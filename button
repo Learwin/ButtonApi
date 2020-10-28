@@ -52,7 +52,8 @@ function create(text)
 	active = true,
 	callback = nil,
 	ret = nil,
-	textColor = colors.black
+	textColor = colors.black,
+	disabledColor = colors.gray
   }
   
   if text ~= nil then
@@ -70,6 +71,11 @@ function create(text)
   
   function this.setTextColor(color)
 	this.textColor = color
+	return this
+  end
+  
+  function this.setDisabledColor(color)
+  	this.disabledColor = color
 	return this
   end
   
@@ -167,7 +173,7 @@ function create(text)
 	if this.active then
 	  _locales.mon.setBackgroundColor(bgcol)
 	else
-	  _locales.mon.setBackgroundColor(colors.gray)
+	  _locales.mon.setBackgroundColor(this.disabledColor)
 	end
 	for i = 1, this.h do
 	  _locales.mon.setCursorPos(this.x, this.y+(i-1))
